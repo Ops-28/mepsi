@@ -1,2 +1,2 @@
 # mepsi
-Aplikasi ne namane mepsi ya mas (media pembelajaran bahasa Indonesia)
+Aplikasi mepsi (media pembelajaran bahasa Indonesia)
