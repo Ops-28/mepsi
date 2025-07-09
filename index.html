@@ -515,6 +515,8 @@
 
         <!-- Main Content Area -->
         <div class="main-content" id="app-content">
+            <!-- Tambahkan elemen audio -->
+            <audio id="background-audio" src="audio/ukulele.mp3" preload="auto" loop></audio>
             <!-- Screens will be dynamically loaded here -->
 
             <!-- Start Screen -->
@@ -1041,6 +1043,10 @@
         // --- Navigation Functions ---
         function goToMenu() {
             showScreen('menu-screen');
+            const audio = document.getElementById('background-audio');
+            if (isSoundOn) {
+                audio.play(); // Play audio if sound is on
+            }
         }
 
         function goToNextScreen() {
@@ -1084,11 +1090,12 @@
         // --- Sound Control ---
         function toggleSound() {
             isSoundOn = !isSoundOn;
+            const audio = document.getElementById('background-audio');
             if (isSoundOn) {
-                // Speaker icon with sound waves
+                audio.play(); // Play audio if sound is on
                 soundIconPath.setAttribute('d', 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z');
             } else {
-                // Speaker icon with mute slash
+                audio.pause(); // Pause audio if sound is off
                 soundIconPath.setAttribute('d', 'M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .9-.23 1.73-.65 2.47l1.46 1.46C20.17 15.3 20.5 13.7 20.5 12c0-4.42-3.58-8-8-8-1.57 0-3.04.46-4.29 1.24l1.46 1.46c.9-.57 1.98-.92 3.09-.92 3.09 0 5.61 2.34 5.95 5.34zm-7.92 7.92l-1.46-1.46C8.73 17.27 7.9 17 7 17c-3.09 0-5.61-2.34-5.95-5.34l-1.92-1.92C.99 10.7 0 12 0 12c0 4.42 3.58 8 8 8 1.57 0 3.04-.46 4.29-1.24zM4.27 4.27L2 6.54l4.66 4.66H3v6h4l5 5V12.9l4.66 4.66 1.46-1.46L19.46 16l-2.03-2.03L22 17.27 19.73 19.5 12 11.77 4.27 4.27z');
             }
             showModal('Kontrol Suara', `Suara ${isSoundOn ? 'diaktifkan' : 'dinonaktifkan'}.`);
